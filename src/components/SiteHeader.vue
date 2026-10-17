@@ -49,9 +49,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--paper-2);
-  background: rgba(251, 247, 238, 0.94);
-  backdrop-filter: blur(10px);
+  background: rgb(251, 247, 238);
   transition: box-shadow 0.2s;
+  transform: translateZ(0);
 }
 .header.scrolled { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07); }
 .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
