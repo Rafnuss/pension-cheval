@@ -138,6 +138,12 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .hero-text > * { max-width: 640px; }
 .hero h1 { margin-bottom: 0.4em; }
 .hero .lead { color: #3f4a44; }
+/* Desktop: hero fills the first screen, scene sits at the very bottom, full width */
+@media (min-width: 641px) {
+  .hero { display: flex; flex-direction: column; min-height: calc(100svh - 72px); }
+  .hero-text { padding-top: clamp(1.5rem, 3.5vh, 3.5rem); margin-bottom: 0; }
+  .hero .scene { flex: 1 1 auto; min-height: 300px; height: 0; }
+}
 
 .facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .facts li {

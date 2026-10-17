@@ -23,11 +23,12 @@ const flowers = [
 </script>
 
 <template>
-  <svg class="scene" viewBox="0 0 1200 500" role="img"
+  <svg class="scene" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice" role="img"
        aria-label="Dessin de la famille, du chien et des chevaux au pré">
     <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="#cfe4ec" />
+        <stop offset="0.45" stop-color="#cfe4ec" />
         <stop offset="1" stop-color="#f1f1df" />
       </linearGradient>
     </defs>
