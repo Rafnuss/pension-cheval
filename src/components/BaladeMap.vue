@@ -3,6 +3,8 @@
 // With a Mapbox token it shows a Mapbox satellite map, otherwise a simple sketch.
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
+
+const touch = typeof matchMedia !== 'undefined' && matchMedia('(hover: none)').matches
 import { home, balades } from '../data/balades.js'
 
 // Public pk. token (safe to ship); .env VITE_MAPBOX_TOKEN overrides it
@@ -159,7 +161,7 @@ const sketch = computed(() => {
           <p class="note">{{ current.note }}</p>
         </div>
         <div v-else class="info hint">
-          <span class="hand">Survolez un parcours !</span>
+          <span class="hand">{{ touch ? 'Touchez un parcours !' : 'Survolez un parcours !' }}</span>
         </div>
       </Transition>
     </div>

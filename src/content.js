@@ -85,7 +85,7 @@ export const camera = {
 }
 
 export const contact = {
-  title: 'Pension cheval à Altkirch : passez nous voir !',
+  title: 'Pension cheval à Altkirch : passez nous voir !',
   text: 'Le mieux, c’est de venir voir les chevaux et le pré. Appelez-nous ou laissez un message, on vous rappelle.',
   phones: ['+33 6 18 71 06 61', '+33 6 79 61 84 13'],
   email: 'silvain.nussbaumer@gmail.com',
