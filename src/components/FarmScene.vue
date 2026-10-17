@@ -1,6 +1,20 @@
 <script setup>
 // Hand-made SVG scene: three horses, the shelter and the hills.
 // Everything is drawn with simple shapes so it is easy to tweak colors or positions.
+// Props: `bare` = no sky rectangle (the page background shows through), `fill` = fill the parent box
+// (anchored to the bottom, cropped on the sides), `wait` = hold the entrance animation until it scrolls into view.
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const props = defineProps({ bare: Boolean, fill: Boolean, wait: Boolean })
+const el = ref(null)
+const seen = ref(!props.wait)
+let io
+onMounted(() => {
+  if (!props.wait || !('IntersectionObserver' in window)) return (seen.value = true)
+  io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { seen.value = true; io.disconnect() } }, { threshold: 0.25 })
+  io.observe(el.value)
+})
+onUnmounted(() => io?.disconnect())
 
 const horses = [
   { id: 'h1', x: 420, y: 392, s: 0.78, flip: false, coat: '#8a5534', hair: '#3a2a20', graze: true },
@@ -12,7 +26,7 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 </script>
 
 <template>
-  <svg class="scene" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice" role="img"
+  <svg ref="el" class="scene" :class="{ 'scene--fill': fill, paused: !seen }" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice" role="img"
        aria-label="Dessin de chevaux au pré, avec un abri et des collines">
     <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
@@ -22,7 +36,7 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
       </linearGradient>
     </defs>
 
-    <rect width="1200" height="500" fill="url(#sky)" />
+    <rect v-if="!bare" width="1200" height="500" fill="url(#sky)" />
 
     <circle cx="1040" cy="110" r="34" fill="#efe3c2" />
 
@@ -115,7 +129,7 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 <style scoped>
 .scene { filter: saturate(0.55) brightness(0.97); display: block; width: 100%; max-width: none; height: auto; }
 /* On phones, zoom in on the horses and the family */
-@media (max-width: 640px) { .scene { width: 190%; margin-left: -82%; } }
+@media (max-width: 640px) { .scene:not(.scene--fill) { width: 190%; margin-left: -82%; } }
 
 /* Entrance: each element rises into place in sequence */
 .pop { animation: pop 0.8s cubic-bezier(.2, .8, .3, 1.2) both; animation-delay: var(--d, 0s); }
@@ -129,9 +143,6 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 @keyframes draw { to { stroke-dashoffset: 0; } }
 
 /* Ambient loops */
-.rays { animation: spin 40s linear infinite; transform-box: fill-box; transform-origin: center; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
 .cloud { animation: drift 26s ease-in-out infinite alternate; }
 .c2 { animation-duration: 34s; animation-direction: alternate-reverse; }
 @keyframes drift { to { transform: translateX(60px); } }
@@ -152,17 +163,13 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 .nod { animation: nod 5s ease-in-out infinite; }
 @keyframes nod { 0%, 80%, 100% { transform: rotate(0); } 88% { transform: rotate(8deg); } }
 
-.wave { transform-box: fill-box; transform-origin: 0 100%; animation: wave 1.4s ease-in-out infinite; }
-@keyframes wave { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(16deg); } }
+</style>
 
-.pony { transform-box: fill-box; transform-origin: 0 0; animation: pony 1.4s ease-in-out infinite; }
-@keyframes pony { 50% { transform: rotate(10deg); } }
-
-.dog-tail { transform-box: fill-box; transform-origin: 0 100%; animation: wag 0.35s ease-in-out infinite alternate; }
-@keyframes wag { from { transform: rotate(-18deg); } to { transform: rotate(18deg); } }
-.dog { animation: hop 4s ease-in-out infinite; }
-@keyframes hop { 0%, 85%, 100% { transform: translateY(0); } 90% { transform: translateY(-8px); } }
-
-.label { font-family: var(--hand); font-size: 26px; fill: #2c2a22; animation: pop 0.6s both 3s; }
-.label-line { animation: pop 0.6s both 3.1s; }
+.scene--fill { width: 100%; height: 100%; max-width: none; margin: 0; }
+/* Hold every animation on its first frame until the scene is visible */
+.paused, .paused * { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .scene * { animation: none !important; }
+  .draw { stroke-dashoffset: 0; }
+}
 </style>

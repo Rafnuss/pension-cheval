@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import SiteHeader from './components/SiteHeader.vue'
+import FarmScene from './components/FarmScene.vue'
 import BaladeMap from './components/BaladeMap.vue'
 import DomaineMap from './components/DomaineMap.vue'
 import WebcamViewer from './components/WebcamViewer.vue'
@@ -107,7 +108,7 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
     <section id="galerie" class="section section--alt">
       <div class="container">
         <span class="hand">Photos</span>
-        <h2>La vie au pré</h2>
+        <h2>La vie au pré : photos de la pension</h2>
         <PhotoGallery />
       </div>
     </section>
@@ -125,7 +126,8 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section section--green">
+    <section id="contact" class="section section--green contact-section">
+      <FarmScene class="contact-scene" bare fill wait />
       <div class="container split contact">
         <div>
           <span class="hand">Contact</span>
@@ -204,6 +206,9 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 
 .cam { grid-template-columns: 1fr 1.5fr; }
 
+.contact-section { position: relative; overflow: hidden; padding-bottom: clamp(9rem, 24vw, 17rem); }
+.contact-scene { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(320px, 46vw, 560px); z-index: 0; }
+.contact-section > .container { position: relative; z-index: 1; }
 .contact { align-items: start; }
 .contact-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.9rem; }
 .contact-list li { display: flex; align-items: center; gap: 0.8rem; font-size: 1.05rem; font-weight: 600; }

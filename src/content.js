@@ -20,8 +20,8 @@ export const nav = [
 
 export const hero = {
   hello: 'Bienvenue à la ferme !',
-  title: 'Ici, les chevaux vivent dehors, en troupeau, toute l’année.',
-  text: 'Nous sommes une famille d’agriculteurs à Altkirch. On accueille quelques chevaux en pension au pré, et on passe les voir tous les jours.',
+  title: 'Pension de chevaux au pré, à Altkirch',
+  text: 'Ici, les chevaux vivent dehors, en troupeau, toute l’année. Nous sommes une famille d’agriculteurs dans le Sundgau (Haut-Rhin) : on accueille quelques chevaux en pension au pré, et on passe les voir tous les jours.',
   cta: { label: 'Venir nous voir', to: 'contact' },
 }
 
@@ -40,7 +40,7 @@ export const family = {
 }
 
 export const pension = {
-  title: 'Comment ça se passe',
+  title: 'Pension au pré à l’année : comment ça se passe',
   items: [
     { icon: 'sun', title: 'Au pré, à l’année', text: 'Les chevaux vivent dehors en troupeau, dans des parcs vallonnés avec un abri.' },
     { icon: 'eye', title: 'On passe tous les jours', text: 'On vérifie l’eau, les clôtures et l’état de chaque cheval. Si quelque chose ne va pas, on vous appelle.' },
@@ -55,12 +55,12 @@ export const pension = {
 }
 
 export const domaine = {
-  title: 'Les parcs, les abris et le point d’eau',
+  title: 'Nos parcs à chevaux, abris et point d’eau',
   text: 'Trois parcs d’un seul tenant, des abris, un point d’eau et un parking. Passez la souris sur la carte (ou touchez un lieu) pour voir de quoi il s’agit.',
 }
 
 export const balades = {
-  title: 'Trois balades au départ de la ferme',
+  title: 'Trois balades à cheval au départ de la ferme',
   text: 'Passez la souris sur un parcours (ou touchez-le) pour voir la distance, le temps au pas et la difficulté pour le cheval.',
 }
 
@@ -85,7 +85,7 @@ export const camera = {
 }
 
 export const contact = {
-  title: 'Passez nous voir !',
+  title: 'Pension cheval à Altkirch : passez nous voir !',
   text: 'Le mieux, c’est de venir voir les chevaux et le pré. Appelez-nous ou laissez un message, on vous rappelle.',
   phones: ['+33 6 18 71 06 61', '+33 6 79 61 84 13'],
   email: 'silvain.nussbaumer@gmail.com',
