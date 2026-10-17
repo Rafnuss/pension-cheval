@@ -1,10 +1,10 @@
-/* Farm palette: meadow greens, hay, barn red, sky, paper */
+/* Farm palette: logo slate blue (meadow-* names kept for older components), hay, barn red, sky, paper */
 :root {
-  --meadow-900: #1f3a2d;
-  --meadow-700: #2f5a43;
-  --meadow-500: #5f8a6e;
-  --meadow-300: #b4c7ba;
-  --meadow-100: #e8eee9;
+  --meadow-900: #22343f;
+  --meadow-700: #324a5b;
+  --meadow-500: #627f92;
+  --meadow-300: #b9c8d2;
+  --meadow-100: #e8edf1;
   --hay: #b08a4a;
   --hay-light: #ebe0c8;
   --barn: #8a5a44;

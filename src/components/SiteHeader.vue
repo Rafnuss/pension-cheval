@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
 import { site, nav } from '../content.js'
 
+const logo = './images/logo.png' // public/ asset, kept as a runtime path like the photos
 const open = ref(false)
 const scrolled = ref(false)
 const onScroll = () => (scrolled.value = window.scrollY > 30)
@@ -15,7 +16,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   <header class="header" :class="{ scrolled }">
     <div class="container bar">
       <a href="#accueil" class="logo" @click="open = false">
-        <span class="logo-icon"><Icon name="home" :size="20" /></span>
+        <img class="logo-img" :src="logo" alt="" width="900" height="513" />
         <span>
           <strong>{{ site.name }}</strong>
           <small>{{ site.subtitle }}</small>
@@ -57,11 +58,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
 .logo strong { display: block; font-family: var(--serif); font-size: 1.15rem; color: var(--green-900); }
 .logo small { display: block; font-size: 0.75rem; color: var(--muted); }
-.logo-icon {
-  display: grid; place-items: center;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--green-700); color: var(--white);
-}
+.logo-img { height: 44px; width: auto; }
 nav { display: flex; align-items: center; gap: 1.6rem; }
 nav a:not(.btn) { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: var(--ink); }
 nav a:not(.btn):hover { color: var(--green-700); }
