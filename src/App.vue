@@ -206,8 +206,8 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 
 .cam { grid-template-columns: 1fr 1.5fr; }
 
-.contact-section { position: relative; overflow: hidden; padding-bottom: clamp(9rem, 24vw, 17rem); }
-.contact-scene { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(320px, 46vw, 560px); z-index: 0; }
+.contact-section { position: relative; overflow: hidden; padding-bottom: clamp(14rem, 24vw, 17rem); }
+.contact-scene { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(340px, 46vw, 560px); z-index: 0; }
 .contact-section > .container { position: relative; z-index: 1; }
 .contact { align-items: start; }
 .contact-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.9rem; }

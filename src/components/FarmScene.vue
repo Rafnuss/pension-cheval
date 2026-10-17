@@ -38,14 +38,14 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 
     <rect v-if="!bare" width="1200" height="500" fill="url(#sky)" />
 
-    <circle cx="1040" cy="110" r="34" fill="#efe3c2" />
+    <circle v-if="!bare" cx="1040" cy="110" r="34" fill="#efe3c2" />
 
     <!-- Clouds -->
-    <g class="cloud c1" fill="#ffffff" opacity="0.8">
+    <g v-if="!bare" class="cloud c1" fill="#ffffff" opacity="0.8">
       <circle cx="200" cy="90" r="26" /><circle cx="232" cy="78" r="32" /><circle cx="268" cy="92" r="24" />
       <rect x="180" y="90" width="110" height="26" rx="13" />
     </g>
-    <g class="cloud c2" fill="#fffdf8" opacity="0.85">
+    <g v-if="!bare" class="cloud c2" fill="#fffdf8" opacity="0.85">
       <circle cx="640" cy="60" r="18" /><circle cx="664" cy="50" r="24" /><circle cx="690" cy="62" r="17" />
       <rect x="626" y="60" width="78" height="18" rx="9" />
     </g>
@@ -163,7 +163,7 @@ const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
 .nod { animation: nod 5s ease-in-out infinite; }
 @keyframes nod { 0%, 80%, 100% { transform: rotate(0); } 88% { transform: rotate(8deg); } }
 
-</style>
+
 
 .scene--fill { width: 100%; height: 100%; max-width: none; margin: 0; }
 /* Hold every animation on its first frame until the scene is visible */
