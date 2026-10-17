@@ -11,6 +11,7 @@ export const site = {
 export const nav = [
   { id: 'famille', label: 'Chez nous' },
   { id: 'pension', label: 'La pension' },
+  { id: 'domaine', label: 'Les parcs' },
   { id: 'balades', label: 'Balades' },
   { id: 'galerie', label: 'Photos' },
   { id: 'camera', label: 'Caméra' },
@@ -51,6 +52,11 @@ export const pension = {
   priceTitle: 'Pension au pré',
   includes: ['Pré et abri', 'Visite quotidienne', 'Accès aux chemins', 'Sellerie'],
   note: 'On peut adapter selon votre cheval (foin l’hiver, soins particuliers…). Parlons-en.',
+}
+
+export const domaine = {
+  title: 'Les parcs, les abris et le point d’eau',
+  text: 'Trois parcs d’un seul tenant, des abris, un point d’eau et un parking. Passez la souris sur la carte (ou touchez un lieu) pour voir de quoi il s’agit.',
 }
 
 export const balades = {

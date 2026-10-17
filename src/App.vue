@@ -2,11 +2,12 @@
 import SiteHeader from './components/SiteHeader.vue'
 import FarmScene from './components/FarmScene.vue'
 import BaladeMap from './components/BaladeMap.vue'
+import DomaineMap from './components/DomaineMap.vue'
 import WebcamViewer from './components/WebcamViewer.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import ContactForm from './components/ContactForm.vue'
 import Icon from './components/Icon.vue'
-import { site, hero, family, pension, balades, camera, contact } from './content.js'
+import { site, hero, family, pension, domaine, balades, camera, contact } from './content.js'
 
 const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 </script>
@@ -68,6 +69,16 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
             <a href="#contact" class="btn btn--hay">On en parle ? <Icon name="arrow" :size="18" /></a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Pastures, shelters, water, parking -->
+    <section id="domaine" class="section section--alt">
+      <div class="container">
+        <span class="hand">Le domaine</span>
+        <h2>{{ domaine.title }}</h2>
+        <p class="lead">{{ domaine.text }}</p>
+        <DomaineMap />
       </div>
     </section>
 
