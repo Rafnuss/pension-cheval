@@ -9,7 +9,7 @@ not marketing.
 - mapbox-gl (dynamically imported) for the balades map; public token in `src/components/BaladeMap.vue`
   (can be overridden with `VITE_MAPBOX_TOKEN` in `.env`). Falls back to an SVG sketch if Mapbox fails.
 - Deploy: GitHub Actions to GitHub Pages (`.github/workflows/deploy.yml`), repo Rafnuss/pension-cheval,
-  live at https://pension-cheval.niederhof.fr (OVH CNAME -> rafnuss.github.io, `public/CNAME`).
+  live at https://pension.niederhof.fr (OVH CNAME -> rafnuss.github.io, `public/CNAME`).
 
 ## Where things are
 - `src/content.js`: all text, prices, phones, webcam password, nav.

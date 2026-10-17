@@ -8,7 +8,7 @@ IMOU_DEVICE_ID = "9M00B4EPCG2260B"
 IMOU_CHANNEL = "0"
 # Data center of the Imou developer account: fk = Europe, sg = Asia, or = America
 IMOU_REGION = "fk"
-ALLOWED_ORIGINS = "https://pension-cheval.niederhof.fr,http://localhost:5173"
+ALLOWED_ORIGINS = "https://pension.niederhof.fr,http://localhost:5173"
 
 # Secrets (set with `npx wrangler secret put <NAME>`, never committed):
 #   IMOU_APP_SECRET  - AppSecret from open.imoulife.com > Application Information
