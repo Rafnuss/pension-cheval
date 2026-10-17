@@ -13,10 +13,8 @@ not marketing.
 
 ## Where things are
 - `src/content.js`: all text, prices, phones, webcam password, nav.
-- `src/data/balades.js`: the 6 routes (waypoints [lon, lat], color, difficulty 1-3, climb, ground, note).
-  Farm location: 47.6211232, 7.2448012. The routes are MADE-UP loops, to be replaced with real GPX tracks.
-  On the Mapbox map they are snapped to paths with the Mapbox Directions API (walking) in the browser.
-- `src/components/FarmScene.vue`: animated SVG hero (family, dog, 3 horses, shelter, hills, birds).
+- `src/data/balades.js`: the 3 routes, real GPX tracks from gpx.studio (`track` = [lon, lat] points, all loops from the farm at 47.6211232, 7.2448012; climb computed from GPX elevations). Names, difficulty, ground and note are placeholders to edit.
+- Hero (in `App.vue`): looping muted drone video `public/video/hero.{webm,mp4}` + `hero-poster.jpg` as background, dark gradient for text. `FarmScene.vue` (animated SVG) is no longer used.
 - `src/components/WebcamViewer.vue`: owners' webcam area. Posts the shared password to the Cloudflare Worker
   (`worker/`, deployed at https://pension-cheval-cam.rafnuss.workers.dev, endpoint in `src/content.js`), which checks it and
   asks the Imou Open Platform (app "PensionCheval", Cruiser 2C 3MP, serial in `worker/wrangler.toml`) for an HLS URL.
@@ -28,10 +26,10 @@ not marketing.
   guessed from the owner's description), edit the coordinates in the JSON.
   Colors per place are in the `colors` object at the top of the component. SVG fallback if Mapbox is unavailable.
 - `src/components/BaladeMap.vue`, `PhotoGallery.vue` (lightbox), `ContactForm.vue` (mailto fallback or Formspree), `SiteHeader.vue`.
-- `public/images/`: placeholder JPGs (generated hills), to be replaced with real photos, same filenames.
+- Photos: raw/edited originals in `originals/` (git-ignored). `scripts/process-photos.sh` standardizes them (`originals/edited/`) and exports web sizes to `photos-web/`; chosen ones are copied to `public/images/<name>-{1000,2000}.webp` and listed in `gallery` (`src/content.js`, name without suffix/extension).
 
 ## Open TODOs
-1. Replace placeholder photos.
-2. Real balade tracks (GPX) and real climb/ground/difficulty values.
+1. Photos: real photos are in; add more / retouch the originals as wanted.
+2. Balades: real names/difficulty/ground/notes for the 3 tracks (more tracks can be added to `balades.js`).
 3. Webcam: add more cameras if needed (Worker handles one device today); consider Imou API quota if traffic grows.
 4. Optional: Formspree id for the contact form.

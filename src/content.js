@@ -35,7 +35,7 @@ export const family = {
     { value: '5–10', label: 'chevaux au pré' },
     { value: '365', label: 'jours dehors par an' },
     { value: '1×', label: 'visite par jour, minimum' },
-    { value: '6', label: 'balades depuis la ferme' },
+    { value: '3', label: 'balades depuis la ferme' },
   ],
 }
 
@@ -60,7 +60,7 @@ export const domaine = {
 }
 
 export const balades = {
-  title: 'Six balades au départ de la ferme',
+  title: 'Trois balades au départ de la ferme',
   text: 'Passez la souris sur un parcours (ou touchez-le) pour voir la distance, le temps au pas et la difficulté pour le cheval.',
 }
 

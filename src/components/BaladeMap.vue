@@ -1,8 +1,7 @@
 <script setup>
-// Map of the 6 balades.
-// With a Mapbox token (VITE_MAPBOX_TOKEN in .env) it shows a Mapbox satellite map and snaps
-// each route to real paths with the Directions API. Without a token it draws a simple sketch.
-import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
+// Map of the balades (real GPX tracks from src/data/balades.js).
+// With a Mapbox token it shows a Mapbox satellite map, otherwise a simple sketch.
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
 import { home, balades } from '../data/balades.js'
 
@@ -15,8 +14,7 @@ const active = ref(null) // id of the hovered / selected balade
 const mapEl = ref(null)
 const useMapbox = ref(Boolean(token))
 
-// Route geometry, starting from the waypoints (replaced by snapped paths when available)
-const routes = reactive(Object.fromEntries(balades.map((b) => [b.id, b.waypoints])))
+const routes = Object.fromEntries(balades.map((b) => [b.id, b.track]))
 
 function lengthKm(coords) {
   const R = 6371, rad = Math.PI / 180
@@ -82,9 +80,6 @@ async function initMapbox() {
     map.on('click', 'b-hit', (e) => (active.value = e.features[0].properties.id))
 
     fitAll()
-    await snapRoutes()
-    map.getSource('balades').setData(featureCollection())
-    fitAll()
     paintState()
   })
 }
@@ -98,16 +93,6 @@ function featureCollection() {
       geometry: { type: 'LineString', coordinates: routes[b.id] },
     })),
   }
-}
-
-// Ask Mapbox for a walking route through each balade's waypoints
-async function snapRoutes() {
-  await Promise.all(balades.map(async (b) => {
-    const coords = b.waypoints.map((c) => c.join(',')).join(';')
-    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${coords}?geometries=geojson&overview=full&access_token=${token}`
-    const res = await fetch(url).then((r) => r.json()).catch(() => null)
-    if (res?.routes?.[0]) routes[b.id] = res.routes[0].geometry.coordinates
-  }))
 }
 
 function fitAll() {
