@@ -65,12 +65,15 @@ export const balades = {
 }
 
 export const gallery = [
-  { src: 'troupeau-prairie.jpg', alt: 'Chevaux au pâturage' },
-  { src: 'cheval-chemin.jpg', alt: 'Cheval sur un chemin bordé d’arbres' },
-  { src: 'paturage-chevaux.jpg', alt: 'Chevaux dans la prairie' },
-  { src: 'abri-prairie.jpg', alt: 'Abri dans la prairie' },
-  { src: 'prairie-balade.jpg', alt: 'Prairie et chemins de balade' },
-  { src: 'troupeau-prairie-2.jpg', alt: 'Le troupeau dans le parc' },
+  { src: 'troupeau-prairie', alt: 'Chevaux au pâturage' },
+  { src: 'vue-abri-drone', alt: 'Le parc et son abri vus du ciel' },
+  { src: 'cheval-chemin', alt: 'Cheval sur un chemin bordé d’arbres' },
+  { src: 'paturage-chevaux', alt: 'Chevaux dans la prairie' },
+  { src: 'vue-parcs-drone', alt: 'Les parcs vallonnés, Altkirch au loin' },
+  { src: 'abri-prairie', alt: 'L’abri dans la prairie' },
+  { src: 'vue-vallon-drone', alt: 'Le vallon et ses chemins' },
+  { src: 'vue-pente-drone', alt: 'Les pentes de la prairie' },
+  { src: 'prairie-balade', alt: 'Prairie et chemins de balade' },
 ]
 
 export const camera = {

@@ -4,3 +4,5 @@ dist
 .env
 .wrangler/
 worker/node_modules/
+originals/
+photos-web/

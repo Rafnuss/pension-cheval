@@ -1,6 +1,6 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import SiteHeader from './components/SiteHeader.vue'
-import FarmScene from './components/FarmScene.vue'
 import BaladeMap from './components/BaladeMap.vue'
 import DomaineMap from './components/DomaineMap.vue'
 import WebcamViewer from './components/WebcamViewer.vue'
@@ -9,6 +9,12 @@ import ContactForm from './components/ContactForm.vue'
 import Icon from './components/Icon.vue'
 import { site, hero, family, pension, domaine, balades, camera, contact } from './content.js'
 
+const heroVideo = ref(null)
+onMounted(() => {
+  // Respect reduced-motion: keep the poster frame, don't play
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.value?.pause()
+})
+const base = import.meta.env.BASE_URL
 const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 </script>
 
@@ -16,15 +22,20 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
   <SiteHeader />
 
   <main>
-    <!-- Hero: text over the sky, then the drawing -->
+    <!-- Hero: drone video in the background, text on top -->
     <section id="accueil" class="hero">
+      <video ref="heroVideo" class="hero-video" autoplay muted loop playsinline preload="auto"
+        :poster="`${base}video/hero-poster.jpg`" aria-hidden="true">
+        <source :src="`${base}video/hero.webm`" type="video/webm" />
+        <source :src="`${base}video/hero.mp4`" type="video/mp4" />
+      </video>
+      <div class="hero-shade"></div>
       <div class="container hero-text">
         <span class="hand">{{ hero.hello }}</span>
         <h1>{{ hero.title }}</h1>
         <p class="lead">{{ hero.text }}</p>
         <a :href="`#${hero.cta.to}`" class="btn">{{ hero.cta.label }} <Icon name="arrow" :size="18" /></a>
       </div>
-      <FarmScene />
     </section>
 
     <!-- Family -->
@@ -144,17 +155,20 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 </template>
 
 <style scoped>
-.hero { background: #dce0e2; overflow: hidden; }
-.hero-text { padding-top: clamp(2.5rem, 6vw, 4.5rem); position: relative; z-index: 1; margin-bottom: -6vw; }
-.hero-text > * { max-width: 640px; }
-.hero h1 { margin-bottom: 0.4em; }
-.hero .lead { color: #43504a; }
-/* Desktop: hero fills the first screen, scene sits at the very bottom, full width */
-@media (min-width: 641px) {
-  .hero { display: flex; flex-direction: column; min-height: calc(100svh - 72px); }
-  .hero-text { padding-top: clamp(1.5rem, 3.5vh, 3.5rem); margin-bottom: 0; }
-  .hero .scene { flex: 1 1 auto; min-height: 300px; height: 0; }
+.hero {
+  position: relative; overflow: hidden; background: #2b3a33; color: var(--white);
+  display: flex; align-items: flex-end; min-height: calc(100svh - 72px);
 }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(14, 24, 19, 0.7), rgba(14, 24, 19, 0.15) 70%), linear-gradient(0deg, rgba(14, 24, 19, 0.45), transparent 45%);
+}
+.hero-text { position: relative; z-index: 1; padding-top: 3rem; padding-bottom: clamp(2.5rem, 8vh, 5rem); }
+.hero-text > * { max-width: 640px; }
+.hero h1 { margin-bottom: 0.4em; color: var(--white); }
+.hero .lead { color: rgba(255, 255, 255, 0.92); }
+.hero .hand { color: var(--white); }
 
 .facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .facts li {
@@ -205,7 +219,6 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 
 @media (max-width: 820px) {
   .pension-grid, .cam { grid-template-columns: 1fr; }
-  .hero-text { margin-bottom: 0; }
 }
 @media (max-width: 480px) {
   .facts strong { font-size: 1.8rem; }

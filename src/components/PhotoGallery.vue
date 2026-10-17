@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
 import { gallery } from '../content.js'
 
-const img = (src) => `${import.meta.env.BASE_URL}images/${src}`
+const img = (src, w) => `${import.meta.env.BASE_URL}images/${src}-${w}.webp`
 const current = ref(null) // index of the photo shown in the lightbox
 
 const step = (d) => (current.value = (current.value + d + gallery.length) % gallery.length)
@@ -20,7 +20,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKey))
 <template>
   <div class="grid">
     <button v-for="(p, i) in gallery" :key="p.src" class="item" @click="current = i">
-      <img :src="img(p.src)" :alt="p.alt" loading="lazy" />
+      <img :src="img(p.src, i === 0 ? 2000 : 1000)" :alt="p.alt" loading="lazy" />
     </button>
   </div>
 
@@ -29,7 +29,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKey))
       <button class="nav close" aria-label="Fermer" @click="current = null"><Icon name="close" /></button>
       <button class="nav prev" aria-label="Précédente" @click="step(-1)"><Icon name="left" :size="28" /></button>
       <figure>
-        <img :src="img(gallery[current].src)" :alt="gallery[current].alt" />
+        <img :src="img(gallery[current].src, 2000)" :alt="gallery[current].alt" />
         <figcaption>{{ gallery[current].alt }}</figcaption>
       </figure>
       <button class="nav next" aria-label="Suivante" @click="step(1)"><Icon name="right" :size="28" /></button>
