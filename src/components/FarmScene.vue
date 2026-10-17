@@ -1,13 +1,6 @@
 <script setup>
-// Hand-made SVG scene: the family, the dog, three horses, the shelter and the hills.
+// Hand-made SVG scene: three horses, the shelter and the hills.
 // Everything is drawn with simple shapes so it is easy to tweak colors or positions.
-
-const people = [
-  { id: 'papa', x: 860, s: 1, head: 1, shirt: '#3d6b3f', pants: '#46597a', hair: '#5a3d2b', style: 'cap' },
-  { id: 'maman', x: 922, s: 0.95, head: 1, shirt: '#b9533c', pants: '#3e3a34', hair: '#8a5a2f', style: 'long' },
-  { id: 'grande', x: 980, s: 0.68, head: 1.22, shirt: '#e7b250', pants: '#46597a', hair: '#a8703a', style: 'ponytail', wave: true },
-  { id: 'petite', x: 1024, s: 0.52, head: 1.32, shirt: '#d9849a', pants: '#3d6b3f', hair: '#c4904f', style: 'bunches' },
-]
 
 const horses = [
   { id: 'h1', x: 420, y: 392, s: 0.78, flip: false, coat: '#8a5534', hair: '#3a2a20', graze: true },
@@ -16,36 +9,25 @@ const horses = [
 ]
 
 const posts = Array.from({ length: 14 }, (_, i) => 560 + i * 48)
-const flowers = [
-  [80, 470, '#fff'], [140, 488, '#e7b250'], [230, 462, '#fff'], [320, 486, '#d9849a'],
-  [400, 470, '#fff'], [520, 492, '#e7b250'], [660, 478, '#fff'], [760, 494, '#d9849a'], [1150, 482, '#fff'],
-]
 </script>
 
 <template>
   <svg class="scene" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice" role="img"
-       aria-label="Dessin de la famille, du chien et des chevaux au pré">
+       aria-label="Dessin de chevaux au pré, avec un abri et des collines">
     <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#cfe4ec" />
-        <stop offset="0.45" stop-color="#cfe4ec" />
-        <stop offset="1" stop-color="#f1f1df" />
+        <stop offset="0" stop-color="#dfe8ec" />
+        <stop offset="0.45" stop-color="#dfe8ec" />
+        <stop offset="1" stop-color="#f1f0e6" />
       </linearGradient>
     </defs>
 
     <rect width="1200" height="500" fill="url(#sky)" />
 
-    <!-- Sun -->
-    <g transform="translate(1040 100)">
-      <g class="rays">
-        <line v-for="a in 12" :key="a" x1="0" y1="-56" x2="0" y2="-72"
-              :transform="`rotate(${a * 30})`" stroke="#e7b250" stroke-width="5" stroke-linecap="round" />
-      </g>
-      <circle r="42" fill="#f2c25c" />
-    </g>
+    <circle cx="1040" cy="110" r="34" fill="#efe3c2" />
 
     <!-- Clouds -->
-    <g class="cloud c1" fill="#fffdf8">
+    <g class="cloud c1" fill="#ffffff" opacity="0.8">
       <circle cx="200" cy="90" r="26" /><circle cx="232" cy="78" r="32" /><circle cx="268" cy="92" r="24" />
       <rect x="180" y="90" width="110" height="26" rx="13" />
     </g>
@@ -127,82 +109,11 @@ const flowers = [
       <line v-for="x in posts" :key="x" :x1="x" y1="402" :x2="x" y2="456" stroke-width="8" />
     </g>
 
-    <!-- Flowers -->
-    <g class="pop" style="--d: 1.5s">
-      <circle v-for="(f, i) in flowers" :key="i" :cx="f[0]" :cy="f[1]" r="4" :fill="f[2]" />
-    </g>
-
-    <!-- Family -->
-    <g v-for="(p, i) in people" :key="p.id" :transform="`translate(${p.x} 474) scale(${p.s})`">
-      <g class="pop" :style="{ '--d': `${1.6 + i * 0.18}s` }">
-        <ellipse cx="-8" cy="-2" rx="10" ry="4.5" fill="#3a2f26" />
-        <ellipse cx="9" cy="-2" rx="10" ry="4.5" fill="#3a2f26" />
-        <rect x="-14" y="-64" width="11" height="62" rx="5" :fill="p.pants" />
-        <rect x="3" y="-64" width="11" height="62" rx="5" :fill="p.pants" />
-        <path d="M-17 -100 L-29 -66" :stroke="p.shirt" stroke-width="10" stroke-linecap="round" />
-        <circle cx="-30" cy="-63" r="5.5" fill="#eab995" />
-        <path d="M-22 -56 C-25 -90 -22 -108 -12 -110 L12 -110 C22 -108 25 -90 22 -56 Z" :fill="p.shirt" />
-        <g v-if="p.wave" class="wave">
-          <path d="M17 -102 L33 -134" :stroke="p.shirt" stroke-width="10" stroke-linecap="round" />
-          <circle cx="35" cy="-139" r="5.5" fill="#eab995" />
-        </g>
-        <template v-else>
-          <path d="M17 -100 L29 -66" :stroke="p.shirt" stroke-width="10" stroke-linecap="round" />
-          <circle cx="30" cy="-63" r="5.5" fill="#eab995" />
-        </template>
-
-        <g :transform="`translate(0 -110) scale(${p.head}) translate(0 110)`">
-          <path v-if="p.style === 'long'" d="M-17 -128 Q-18 -149 0 -148 Q18 -149 17 -128 L19 -100 L-19 -100 Z" :fill="p.hair" />
-          <g v-if="p.style === 'ponytail'" class="pony">
-            <path d="M12 -140 Q32 -138 27 -110 Q22 -122 11 -132 Z" :fill="p.hair" />
-          </g>
-          <g v-if="p.style === 'bunches'" :fill="p.hair">
-            <circle cx="-17" cy="-132" r="7" /><circle cx="17" cy="-132" r="7" />
-          </g>
-          <rect x="-5" y="-116" width="10" height="8" fill="#eab995" />
-          <circle cx="0" cy="-128" r="15" fill="#f0c4a2" />
-          <path v-if="p.style !== 'cap'" d="M-15 -128 Q-15 -146 0 -145 Q15 -146 15 -128 Q5 -138 -15 -128 Z" :fill="p.hair" />
-          <template v-else>
-            <path d="M-15 -126 Q-16 -134 -12 -138 L12 -138 Q16 -134 15 -126 Z" :fill="p.hair" />
-            <path d="M-16 -132 Q-15 -149 0 -149 Q15 -149 16 -132 Z" fill="#b9533c" />
-            <path d="M8 -133 Q20 -135 27 -131" stroke="#8f3e2c" stroke-width="4" stroke-linecap="round" fill="none" />
-          </template>
-          <circle cx="-5" cy="-127" r="1.8" fill="#2c2a22" />
-          <circle cx="5" cy="-127" r="1.8" fill="#2c2a22" />
-          <circle cx="-9" cy="-121" r="3" fill="#e58f86" opacity="0.45" />
-          <circle cx="9" cy="-121" r="3" fill="#e58f86" opacity="0.45" />
-          <path d="M-4 -121 Q0 -117.5 4 -121" stroke="#2c2a22" stroke-width="1.6" fill="none" stroke-linecap="round" />
-        </g>
-      </g>
-    </g>
-
-    <!-- Dog -->
-    <g transform="translate(1100 474)">
-      <g class="pop" style="--d: 2.4s">
-        <g class="dog">
-          <path class="dog-tail" d="M24 -30 Q38 -40 36 -56" stroke="#c98a4b" stroke-width="6" stroke-linecap="round" fill="none" />
-          <rect x="-20" y="-22" width="7" height="22" rx="3" fill="#c98a4b" />
-          <rect x="-8" y="-22" width="7" height="22" rx="3" fill="#a96f38" />
-          <rect x="8" y="-22" width="7" height="22" rx="3" fill="#c98a4b" />
-          <rect x="18" y="-22" width="7" height="22" rx="3" fill="#a96f38" />
-          <ellipse cx="2" cy="-28" rx="28" ry="13" fill="#c98a4b" />
-          <ellipse cx="6" cy="-24" rx="14" ry="7" fill="#f3e3c7" />
-          <circle cx="-26" cy="-42" r="12" fill="#c98a4b" />
-          <ellipse cx="-37" cy="-38" rx="9" ry="6.5" fill="#f3e3c7" />
-          <circle cx="-45" cy="-40" r="2.8" fill="#2c2a22" />
-          <circle cx="-28" cy="-45" r="1.8" fill="#2c2a22" />
-          <path d="M-22 -52 Q-12 -50 -16 -34" fill="#8a5a2f" />
-        </g>
-      </g>
-    </g>
-
-    <text x="1060" y="372" class="label" transform="rotate(-4 1060 372)">le chien</text>
-    <path d="M1078 380 Q1092 392 1092 410" fill="none" stroke="#2c2a22" stroke-width="1.6" stroke-linecap="round" class="label-line" />
   </svg>
 </template>
 
 <style scoped>
-.scene { display: block; width: 100%; max-width: none; height: auto; }
+.scene { filter: saturate(0.55) brightness(0.97); display: block; width: 100%; max-width: none; height: auto; }
 /* On phones, zoom in on the horses and the family */
 @media (max-width: 640px) { .scene { width: 190%; margin-left: -82%; } }
 

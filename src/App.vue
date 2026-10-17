@@ -133,11 +133,11 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 </template>
 
 <style scoped>
-.hero { background: #cfe4ec; overflow: hidden; }
+.hero { background: #dce0e2; overflow: hidden; }
 .hero-text { padding-top: clamp(2.5rem, 6vw, 4.5rem); position: relative; z-index: 1; margin-bottom: -6vw; }
 .hero-text > * { max-width: 640px; }
 .hero h1 { margin-bottom: 0.4em; }
-.hero .lead { color: #3f4a44; }
+.hero .lead { color: #43504a; }
 /* Desktop: hero fills the first screen, scene sits at the very bottom, full width */
 @media (min-width: 641px) {
   .hero { display: flex; flex-direction: column; min-height: calc(100svh - 72px); }
@@ -148,11 +148,9 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .facts li {
   background: var(--white); border-radius: var(--radius); padding: 1.3rem 1.4rem;
-  border: 2px dashed var(--meadow-300);
+  border: 1px solid var(--meadow-300);
 }
-.facts li:nth-child(2) { transform: rotate(1.5deg); }
-.facts li:nth-child(3) { transform: rotate(-1.2deg); }
-.facts strong { display: block; font-family: var(--display); font-weight: 400; font-size: 2.3rem; color: var(--meadow-700); line-height: 1.1; }
+.facts strong { display: block; font-family: var(--display); font-weight: 600; font-size: 2.2rem; color: var(--meadow-700); line-height: 1.1; }
 .facts span { color: var(--muted); }
 
 .pension-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; margin-top: 1.5rem; }
@@ -163,20 +161,16 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .steps p { margin: 0; color: var(--muted); }
 .step-icon {
   width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--white); color: var(--meadow-700); border: 2px solid var(--meadow-300);
+  background: var(--white); color: var(--meadow-700); border: 1px solid var(--meadow-300);
 }
 
 .ticket {
   background: var(--white); border-radius: var(--radius); padding: 1.8rem;
-  box-shadow: var(--shadow); position: relative; transform: rotate(-1deg);
-  border: 2px solid var(--hay);
-}
-.ticket::before {
-  content: ''; position: absolute; top: -12px; left: 50%; width: 70px; height: 24px; margin-left: -35px;
-  background: rgba(231, 178, 80, 0.55); transform: rotate(3deg); border-radius: 3px;
+  box-shadow: var(--shadow); position: relative;
+  border: 1px solid var(--meadow-300); border-top: 3px solid var(--meadow-700);
 }
 .ticket-title { font-weight: 700; color: var(--muted); }
-.price { font-family: var(--display); font-size: 3.4rem; color: var(--meadow-700); line-height: 1; margin: 0.4rem 0 1rem; }
+.price { font-family: var(--display); font-weight: 600; font-size: 3.2rem; color: var(--meadow-700); line-height: 1; margin: 0.4rem 0 1rem; }
 .price span { font-family: var(--sans); font-size: 1rem; color: var(--muted); }
 .ticket ul { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.4rem; }
 .ticket li { display: flex; align-items: center; gap: 0.5rem; }
@@ -196,7 +190,7 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .footer-hills { position: absolute; top: -59px; left: 0; width: 100%; height: 60px; fill: var(--meadow-900); }
 .section--green + .footer { margin-top: 0; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
-.footer strong { color: var(--white); font-family: var(--display); font-weight: 400; }
+.footer strong { color: var(--white); font-family: var(--display); font-weight: 600; }
 
 @media (max-width: 820px) {
   .pension-grid, .cam { grid-template-columns: 1fr; }

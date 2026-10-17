@@ -17,13 +17,17 @@ not marketing.
   Farm location: 47.6211232, 7.2448012. The routes are MADE-UP loops, to be replaced with real GPX tracks.
   On the Mapbox map they are snapped to paths with the Mapbox Directions API (walking) in the browser.
 - `src/components/FarmScene.vue`: animated SVG hero (family, dog, 3 horses, shelter, hills, birds).
-- `src/components/WebcamViewer.vue`: MOCKUP of the owners' webcam area (shared password + animated fake feed).
-  Real camera is an Imou; the real version is not built yet.
+- `src/components/WebcamViewer.vue`: owners' webcam area. Posts the shared password to the Cloudflare Worker
+  (`worker/`, deployed at https://pension-cheval-cam.rafnuss.workers.dev, endpoint in `src/content.js`), which checks it and
+  asks the Imou Open Platform (app "PensionCheval", Cruiser 2C 3MP, serial in `worker/wrangler.toml`) for an HLS URL.
+  hls.js plays it (Safari/Chrome natively). Secrets IMOU_APP_SECRET and CAM_PASSWORD live only in Cloudflare
+  (`cd worker && npx wrangler secret put <NAME>`; redeploy code with `npx wrangler deploy`).
+  Worker prefers the sub stream (streamId 1): the HD main stream did not decode in Chrome (likely H.265).
 - `src/components/BaladeMap.vue`, `PhotoGallery.vue` (lightbox), `ContactForm.vue` (mailto fallback or Formspree), `SiteHeader.vue`.
 - `public/images/`: placeholder JPGs (generated hills), to be replaced with real photos, same filenames.
 
 ## Open TODOs
 1. Replace placeholder photos.
 2. Real balade tracks (GPX) and real climb/ground/difficulty values.
-3. Real webcam: Imou stream (Imou Open Platform / share link) + real access control if needed.
+3. Webcam: add more cameras if needed (Worker handles one device today); consider Imou API quota if traffic grows.
 4. Optional: Formspree id for the contact form.

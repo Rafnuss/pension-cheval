@@ -70,14 +70,9 @@ export const gallery = [
 export const camera = {
   title: 'La caméra du pré',
   text: 'Pour les propriétaires : jetez un œil à votre cheval quand vous voulez, depuis votre téléphone.',
-  // MOCKUP: a password checked in the browser only keeps casual visitors out.
-  // Anyone who reads the page source can find it. See README for real options.
-  password: 'carotte',
-  cams: [
-    { id: 'pre', label: 'Le pré du haut' },
-    { id: 'abri', label: 'L’abri' },
-    { id: 'portail', label: 'Le portail' },
-  ],
+  label: 'Le pré',
+  // URL of the Cloudflare Worker in /worker (or set VITE_CAM_ENDPOINT in .env). Empty = camera not connected yet.
+  endpoint: 'https://pension-cheval-cam.rafnuss.workers.dev',
 }
 
 export const contact = {
