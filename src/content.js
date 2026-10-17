@@ -20,19 +20,18 @@ export const nav = [
 
 export const hero = {
   hello: 'Bienvenue à la ferme !',
-  title: 'Pension de chevaux au pré, à Altkirch',
-  text: 'Ici, les chevaux vivent dehors, en troupeau, toute l’année. Nous sommes une famille d’agriculteurs dans le Sundgau (Haut-Rhin) : on accueille quelques chevaux en pension au pré, et on passe les voir tous les jours.',
+  title: 'Pension de chevaux au pré, à l’année',
+  text: 'Ici, les chevaux vivent dehors, en troupeau, toute l’année. Nous accueillons des chevaux en pension au pré à l’année, et nous passons les voir tous les jours.',
   cta: { label: 'Venir nous voir', to: 'contact' },
 }
 
 export const family = {
   title: 'Une petite pension, tenue en famille',
   paragraphs: [
-    'La pension, c’est d’abord la ferme : des prés vallonnés, des haies, un abri, et beaucoup d’herbe. Les parents s’occupent des chevaux, les deux filles donnent un coup de main (surtout pour les carottes), et le chien ne rate jamais une visite au pré.',
-    'On garde volontairement peu de chevaux, pour que chacun ait sa place et qu’on connaisse bien chaque caractère. Les propriétaires viennent quand ils veulent, et on prend le temps de discuter.',
+    'La pension, c’est d’abord le retour à l’état naturel du cheval : une vie en troupeau, une source d’eau qui coule toute l’année, des prés vallonnés, des haies, un abri et beaucoup d’herbe. En hiver, des zones stabilisées sont prévues afin que les chevaux puissent avoir les pieds au sec.',
+    'Nous assurons une visite quotidienne et une surveillance. Les propriétaires viennent quand ils veulent. Un groupe WhatsApp permet de créer du lien entre les propriétaires et de se tenir informés.',
   ],
   facts: [
-    { value: '5–10', label: 'chevaux au pré' },
     { value: '365', label: 'jours dehors par an' },
     { value: '1×', label: 'visite par jour, minimum' },
     { value: '3', label: 'balades depuis la ferme' },
@@ -50,8 +49,8 @@ export const pension = {
   price: '200 €',
   per: 'par mois',
   priceTitle: 'Pension au pré',
-  includes: ['Pré et abri', 'Visite quotidienne', 'Accès aux chemins', 'Sellerie'],
-  note: 'On peut adapter selon votre cheval (foin l’hiver, soins particuliers…). Parlons-en.',
+  includes: ['Pré et abri', 'Visite quotidienne', 'Accès aux chemins', 'Sellerie : 12 €/mois'],
+  note: 'On peut adapter selon votre cheval (soins particuliers, complémentation…). Parlons-en.',
 }
 
 export const domaine = {
@@ -60,7 +59,7 @@ export const domaine = {
 }
 
 export const balades = {
-  title: 'Trois balades à cheval au départ de la ferme',
+  title: 'Trois suggestions de balades (et d’autres découvertes possibles)',
   text: 'Passez la souris sur un parcours (ou touchez-le) pour voir la distance, le temps au pas et la difficulté pour le cheval.',
 }
 

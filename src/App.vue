@@ -177,6 +177,7 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 }
 .facts strong { display: block; font-family: var(--display); font-weight: 600; font-size: 2.2rem; color: var(--meadow-700); line-height: 1.1; }
 .facts span { color: var(--muted); }
+.facts li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 .pension-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; margin-top: 1.5rem; }
 .pension-grid > * { min-width: 0; }
