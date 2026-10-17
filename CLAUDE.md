@@ -8,8 +8,8 @@ not marketing.
 - Vue 3 + Vite, no router, single page with anchor sections. `base: './'` for GitHub Pages.
 - mapbox-gl (dynamically imported) for the balades map; public token in `src/components/BaladeMap.vue`
   (can be overridden with `VITE_MAPBOX_TOKEN` in `.env`). Falls back to an SVG sketch if Mapbox fails.
-- Deploy: GitHub Actions to GitHub Pages. The workflow is in `setup/deploy.yml` and still needs moving
-  to `.github/workflows/deploy.yml`.
+- Deploy: GitHub Actions to GitHub Pages (`.github/workflows/deploy.yml`), repo Rafnuss/pension-cheval,
+  live at https://pension-cheval.niederhof.fr (OVH CNAME -> rafnuss.github.io, `public/CNAME`).
 
 ## Where things are
 - `src/content.js`: all text, prices, phones, webcam password, nav.
@@ -23,10 +23,7 @@ not marketing.
 - `public/images/`: placeholder JPGs (generated hills), to be replaced with real photos, same filenames.
 
 ## Open TODOs
-1. Move `setup/deploy.yml` to `.github/workflows/`, `git init`, first commit, create GitHub repo, push,
-   set Settings > Pages > Source: GitHub Actions.
-2. Replace placeholder photos.
-3. Real balade tracks (GPX) and real climb/ground/difficulty values.
-4. Real webcam: Imou stream (Imou Open Platform / share link) + real access control if needed.
-5. Optional: Formspree id for the contact form, custom domain scea-nussbaumer.fr (CNAME in public/).
-6. Test the Mapbox map in a real browser (it was only tested with the sketch fallback).
+1. Replace placeholder photos.
+2. Real balade tracks (GPX) and real climb/ground/difficulty values.
+3. Real webcam: Imou stream (Imou Open Platform / share link) + real access control if needed.
+4. Optional: Formspree id for the contact form.

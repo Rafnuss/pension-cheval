@@ -6,7 +6,8 @@ import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
 import { home, balades } from '../data/balades.js'
 
-const token = import.meta.env.VITE_MAPBOX_TOKEN
+// Public pk. token (safe to ship); .env VITE_MAPBOX_TOKEN overrides it
+const token = import.meta.env.VITE_MAPBOX_TOKEN || 'pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g'
 const WALK_KMH = 6 // horse at walk
 const levels = ['', 'Facile', 'Moyen', 'Sportif']
 
