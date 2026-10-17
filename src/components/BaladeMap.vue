@@ -1,6 +1,6 @@
 <script setup>
 // Map of the 6 balades.
-// With a Mapbox token (VITE_MAPBOX_TOKEN in .env) it shows a Mapbox outdoors map and snaps
+// With a Mapbox token (VITE_MAPBOX_TOKEN in .env) it shows a Mapbox satellite map and snaps
 // each route to real paths with the Directions API. Without a token it draws a simple sketch.
 import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
@@ -50,7 +50,7 @@ async function initMapbox() {
 
   map = new mapboxgl.Map({
     container: mapEl.value,
-    style: 'mapbox://styles/mapbox/outdoors-v12',
+    style: 'mapbox://styles/mapbox/satellite-streets-v12',
     center: [home.lon, home.lat],
     zoom: 12.3,
     cooperativeGestures: true, // two fingers to pan on phones, ctrl + scroll to zoom
