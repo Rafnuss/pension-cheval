@@ -78,7 +78,7 @@ export const gallery = [
 
 export const camera = {
   title: 'La caméra du pré',
-  text: 'Pour les propriétaires : jetez un œil à votre cheval quand vous voulez, depuis votre téléphone.',
+  text: 'Vous avez un cheval chez nous ? Jetez un œil au pré quand vous voulez, depuis votre téléphone.',
   label: 'Le pré',
   // URL of the Cloudflare Worker in /worker (or set VITE_CAM_ENDPOINT in .env). Empty = camera not connected yet.
   endpoint: 'https://pension-cheval-cam.rafnuss.workers.dev',

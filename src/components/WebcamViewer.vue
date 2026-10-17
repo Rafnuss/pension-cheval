@@ -78,10 +78,10 @@ onUnmounted(stop)
 </script>
 
 <template>
-  <div class="cam-card">
+  <div class="cam-card" :class="{ playing: state === 'playing' }">
     <form v-if="state !== 'playing'" class="lock" @submit.prevent="unlock">
       <div class="lock-icon"><Icon name="lock" :size="30" /></div>
-      <h3>Espace propriétaires</h3>
+      <h3>Accès à la caméra</h3>
       <p>Entrez le mot de passe que nous vous avons donné.</p>
       <div class="row">
         <input id="cam-pwd" v-model="pwd" type="password" placeholder="Mot de passe" autocomplete="current-password"
@@ -127,7 +127,7 @@ onUnmounted(stop)
 @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 .err { color: var(--barn) !important; margin: 0.6rem 0 0; }
 
-.screen { position: relative; border-radius: 14px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; }
+.screen { position: relative; background: #000; aspect-ratio: 640 / 352; max-height: 78vh; }
 .screen video { display: block; width: 100%; height: 100%; object-fit: contain; }
 /* No sound, ever: hide the mute/volume controls (Chrome, Safari, Edge) */
 .screen video::-webkit-media-controls-mute-button,
@@ -141,6 +141,14 @@ onUnmounted(stop)
 .live i { width: 9px; height: 9px; border-radius: 50%; background: #e5483b; animation: blink 1.2s infinite; }
 @keyframes blink { 50% { opacity: 0.2; } }
 
-.viewer-foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 0.8rem; font-size: 0.92rem; color: var(--muted); }
+.viewer-foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.8rem 1.25rem; font-size: 0.92rem; color: var(--muted); }
+
+/* Playing: the picture fills the whole white card, edge to edge */
+.cam-card.playing { padding: 0; overflow: hidden; }
+
+/* Phones: the card uses the full screen width */
+@media (max-width: 640px) {
+  .cam-card { margin-inline: -1.25rem; border-radius: 0; box-shadow: none; }
+}
 .link { background: none; border: 0; font: inherit; color: var(--meadow-700); text-decoration: underline; cursor: pointer; padding: 0; }
 </style>

@@ -115,12 +115,10 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 
     <!-- Webcam -->
     <section id="camera" class="section">
-      <div class="container split cam">
-        <div>
-          <span class="hand">Pour les propriétaires</span>
-          <h2>{{ camera.title }}</h2>
-          <p class="lead">{{ camera.text }}</p>
-        </div>
+      <div class="container">
+        <span class="hand">En direct</span>
+        <h2>{{ camera.title }}</h2>
+        <p class="lead">{{ camera.text }}</p>
         <WebcamViewer />
       </div>
     </section>
@@ -204,8 +202,6 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .ticket li :deep(svg) { color: var(--meadow-500); }
 .note { font-size: 0.92rem; color: var(--muted); }
 
-.cam { grid-template-columns: 1fr 1.5fr; }
-
 .contact-section { position: relative; overflow: hidden; padding-bottom: clamp(14rem, 24vw, 17rem); }
 .contact-scene { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(340px, 46vw, 560px); z-index: 0; }
 .contact-section > .container { position: relative; z-index: 1; }
@@ -223,7 +219,7 @@ const tel = (n) => `tel:${n.replace(/\s/g, '')}`
 .footer strong { color: var(--white); font-family: var(--display); font-weight: 600; }
 
 @media (max-width: 820px) {
-  .pension-grid, .cam { grid-template-columns: 1fr; }
+  .pension-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .facts strong { font-size: 1.8rem; }
